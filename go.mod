@@ -1,4 +1,4 @@
-module background-key-sender
+module virtual_keyboard
 
 go 1.22
 
