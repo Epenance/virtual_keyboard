@@ -123,8 +123,17 @@ func getKeyCode(input interface{}) (uintptr, error) {
 		return 0, fmt.Errorf("Invalid character: %c", v)
 	case int:
 		return uintptr(v), nil
+	case string:
+		if len(v) > 0 {
+			r := rune(v[0])
+			if (r >= '0' && r <= '9') || (r >= 'A' && r <= 'Z') || (r >= 'a' && r <= 'z') {
+				return uintptr(unicode.ToUpper(r)), nil
+			}
+			return 0, fmt.Errorf("Invalid character: %c", r)
+		}
+		return 0, fmt.Errorf("Empty string is not allowed")
 	default:
-		return 0, fmt.Errorf("Invalid type: only rune and int are allowed")
+		return 0, fmt.Errorf("Invalid type: only rune, int and string are allowed")
 	}
 }
 
