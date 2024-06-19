@@ -80,6 +80,7 @@ func (k *KeyBonding) Launch() error {
 func (k *KeyBonding) upKey(key interface{}) error {
 	keyCode, err := getKeyCode(key)
 	if err != nil {
+		fmt.Println(err.Error())
 		return err
 	}
 	_, _, _ = procPostMsg.Call(k.hwnd, 0x0101, keyCode, 0)
@@ -90,6 +91,7 @@ func (k *KeyBonding) upKey(key interface{}) error {
 func (k *KeyBonding) downKey(key interface{}) error {
 	keyCode, err := getKeyCode(key)
 	if err != nil {
+		fmt.Println(err.Error())
 		return err
 	}
 
